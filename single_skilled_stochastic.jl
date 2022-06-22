@@ -7,13 +7,14 @@ H = 4
 J = 3
 Tᵈ = 1
 Tˢ = 1
+Ξ = 650
 
 s = [
     1 0 0;
     1 0 0; 
     0 1 0;
     0 0 1
-]
+] 
 
 d = [
     0.3  1.2   
@@ -83,8 +84,20 @@ end
 end
 #########################################################
 #########################################################
-sp = instantiate(skill, SimpleSampler(µ, Σ), 10)
+sp = instantiate(skill, SimpleSampler(µ, Σ), Ξ)
 
 set_optimizer(sp, CPLEX.Optimizer)
 
 optimize!(sp)
+
+value.(sp[1, :ψ])
+
+value.(sp[1, :α])
+
+sp[2 , :γξ]
+
+sum(value.(sp[2 , :γξ], i) for i in 1:10 ) .* (1/ Ξ)
+
+
+objective_value(sp)
+
