@@ -2,6 +2,8 @@ using JuMP
 using CPLEX
 using DataFrames
 using Distributions
+using Plots
+using CSV
 
 ###############################
 ###############################
@@ -21,7 +23,7 @@ H = 4
 J = 3
 Tᵈ = 1
 Tˢ = 1
-Ξ = 7
+Ξ = 500
 
 dξ = reshape(rand(MvNormal(μ,Σ), Ξ ), (J,Tˢ,Ξ) )
 
@@ -113,7 +115,7 @@ optimize!(skill)
 
 println("objective value = ", objective_value(skill) )
 
-println("permanent workforce cost = " , value(sum( zᵖ[h] * ψ[h,j] * Tᵈ for h in 1:H for j in 1:J ) ))
+println("permanent workforce cost = " , value(sum( zᵖ[h] * ψ[h,j] * (Tᵈ + Tˢ) for h in 1:H for j in 1:J ) ))
 
 println("Training cost = " , value( sum(zᵐ[h,j] * χ[h,j] for h in 1:H for j in 1:J ) ))
 
@@ -135,7 +137,14 @@ rename!(df_α1, [:j1,:j2, :j3])
 DF_γξ = DataFrame(value.(γξ[: , : , 1]), :auto)
 
 
-value.(γξ)
+a = DataFrame(value.(γξ)[1, : , : ], :auto)
 
-println("objective value = ", objective_value(skill) )
+b = DataFrame(value.(γξ)[2, : , : ], :auto)
 
+c = DataFrame(value.(γξ)[2, : , : ], :auto)
+
+pwd()
+
+CSV.write("a.csv", a)
+CSV.write("b.csv", b)
+CSV.write("c.csv", c)
