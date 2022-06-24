@@ -148,3 +148,15 @@ pwd()
 CSV.write("a.csv", a)
 CSV.write("b.csv", b)
 CSV.write("c.csv", c)
+
+
+dξ[1, : , :]
+
+skill_1 = DataFrame(dξ[1, : , :], :auto)
+skill_2 = DataFrame(dξ[2, : , :], :auto)
+skill_3 = DataFrame(dξ[3, : , :], :auto)
+ 
+CSV.write("skill_1.csv", skill_1)
+CSV.write("skill_2.csv", skill_2)
+CSV.write("skill_3.csv", skill_3)
+
