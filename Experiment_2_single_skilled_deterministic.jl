@@ -6,8 +6,9 @@ using LinearAlgebra
 
 H = 12
 J = 6
-T = 10
+T = 10 
 s = fill(0, H, J)
+
 
 for h in 1:6
     for j in 1:6
@@ -57,7 +58,20 @@ for h in 7:10
     end
 end
 
+zᵐ[5,6] = 11000 * 1/2
+zᵐ[5,1] = 11000 * 3/4
+
+zᵐ[6,1] = 11000 * 1/2
+zᵐ[6,2] = 11000 * 3/4
+
+zᵐ[11,6] = 11000 * 1/2
+zᵐ[11,1] = 11000 * 3/4
+
+zᵐ[12,1] = 11000 * 1/2
+zᵐ[12,2] = 11000 * 3/4
+
 zᵐ
+
 
 μ = fill(0.5, J)
 
@@ -104,6 +118,11 @@ optimize!(m)
 
 value(sum(ψ))
 df_ψ = DataFrame(value.(ψ), :auto)
+
+
+ζᵖⱼ = [value(sum(ψ[h,j] for h in 1:H) ) for j in 1:J]
+
+
 rename!(df_ψ,[:j1,:j2, :j3])
 
 df_α1 = DataFrame( value.(α[: , : , 1]), :auto)
@@ -124,9 +143,3 @@ for j in 1:J
     return ζ
 end
 ζ
-value(sum(ψ[h,1] for h in 1:H) )
-value(sum(ψ[h,2] for h in 1:H) )
-value(sum(ψ[h,3] for h in 1:H) )
-value(sum(ψ[h,4] for h in 1:H) )
-value(sum(ψ[h,5] for h in 1:H) )
-value(sum(ψ[h,6] for h in 1:H) )
