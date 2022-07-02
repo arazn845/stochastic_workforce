@@ -77,7 +77,7 @@ zᵐ = [
         @recourse(skill, 0 ≤ γξ[1:J , 1:Tˢ])
         @recourse(skill, αξ[1:H , 1:J , 1:Tˢ], Bin)
         @recourse(skill, z3[1:H , 1:J , 1:Tˢ], Bin)
-        @recourse(skill, z4[1:H , 1:J , 1:Tˢ], Bin)
+        @recourse(skill, z4[1:H , 1:J , 1:Tˢ])
 
         @objective(skill, Min, sum(zᶜ[j] * γξ[j,t] for j in 1:J for t in 1:Tˢ ) )
         
