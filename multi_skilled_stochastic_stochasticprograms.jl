@@ -49,7 +49,7 @@ zᵐ = [
         @decision(skill, 0 ≤ χ[1:H , 1:J] ≤ 1)
         @decision(skill, α[1:H , 1:J , 1:Tᵈ], Bin)
         @decision(skill, z1[1:H , 1:J , 1:Tᵈ], Bin)
-        @decision(skill, z2[1:H , 1:J , 1:Tᵈ], Bin)
+        @decision(skill, z2[1:H , 1:J , 1:Tᵈ])
         
         @objective(skill, Min, sum( zᵖ[h] * ψ[h,j] * (Tᵈ + Tˢ) for h in 1:H for j in 1:J ) +
                             sum(zᵐ[h,j] * χ[h,j] for h in 1:H for j in 1:J ) 
