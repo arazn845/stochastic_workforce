@@ -1,6 +1,6 @@
 using JuMP
 using GLPK
-using CPLEX
+using Gurobi
 using Distributions
 using Random
 using Plots
@@ -8,7 +8,7 @@ using LinearAlgebra
 using DataFrames
 
 
-skill = Model(CPLEX.Optimizer)
+skill = Model(Gurobi.Optimizer)
 
 Ξ = 10
 
